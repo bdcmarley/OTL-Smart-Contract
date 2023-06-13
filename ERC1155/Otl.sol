@@ -1,3 +1,6 @@
+// SPDX-License-Identifier: MIT
+// OpenZeppelin Contracts (last updated v4.5.0) (token/ERC1155/IERC1155Receiver.sol)
+
 pragma solidity ^0.8.19;
 
 import "./ERC1155.sol";
@@ -18,4 +21,23 @@ contract ERC1155 is ERC1155 {
     constructor(string memory uri_) {
         _setURI(uri_);
     }
+
+    function createBox(
+        address to,
+        uint256 id,
+        uint256 amount,
+        bytes memory data
+    ) public {
+        _mint(to, id, amount, data);
+    }
+
+    function _openBox(address from, uint256 id, uint256 amount) internal {
+        _burn(from, address(0), id, amount, "");
+    }
+
+    function _lockedOtl() internal {}
+
+    function _getPhysicalOtl() internal {}
+
+    function _sellToAnother() internal {}
 }
